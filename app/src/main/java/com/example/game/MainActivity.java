@@ -84,21 +84,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     bord[rIndex][cIndex] = -1;
                 }
 
-                //we need to check also slant
-                // if(rIndex==cIndex) {
+
                 if ((bord[rIndex][0] == turn && bord[rIndex][1] == turn && bord[rIndex][2] == turn) ||
                         (bord[0][cIndex] == turn && bord[1][cIndex] == turn && bord[2][cIndex] == turn) ||
                         (bord[0][0] == turn && bord[1][1] == turn && bord[2][2] == turn)||
                         (bord[0][2] == turn && bord[1][1] == turn && bord[2][0] == turn))
                     win = true;
 
-                //    }
-//                else{
-//                    if ((bord[rIndex][0] == turn && bord[rIndex][1] == turn && bord[rIndex][2] == turn) ||
-//                            (bord[0][cIndex] == turn && bord[1][cIndex] == turn && bord[2][cIndex] == turn))
-//                        win=true;
-//
-//                }
 
                 if(win) {
                     if (turn == 1)
