@@ -14,7 +14,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     int[][] bord;
     int turn = 1;
     ImageButton[] ims;
-    ImageButton imk;
     boolean win=false;
     TextView title;
     boolean start=false;
@@ -42,21 +41,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
 
-        playBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                title.setText("X turn");
+        playBtn.setOnClickListener(view -> {
+            title.setText("X turn");
 
-                msg.setText("game started");
-                start=true;
-                bord=new int[3][3];
-                turn=1;
-                win=false;
-                for (int i = 0; i < ims.length; i++) {
-                    ims[i].setImageResource(R.drawable.white);
-                }
-
+            msg.setText("game started");
+            start=true;
+            bord=new int[3][3];
+            turn=1;
+            win=false;
+            for (int i = 0; i < ims.length; i++) {
+                ims[i].setImageResource(R.drawable.white);
             }
+
         });
     }
 
