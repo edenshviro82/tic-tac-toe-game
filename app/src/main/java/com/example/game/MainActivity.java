@@ -18,7 +18,6 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    TextView msg;
     int[][] bord;
     int turn = 1;
     ImageButton[] ims;
@@ -36,7 +35,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         title = findViewById(R.id.mainActivityTitle);
-        msg = findViewById(R.id.mainActivityMsg);
         playBtn = findViewById(R.id.mainActivityPlayBtn);
         l1= findViewById(R.id.mainActivityLayout0);
         ims = new ImageButton[9];
@@ -55,7 +53,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         playBtn.setOnClickListener(view -> {
             title.setBackgroundResource(R.drawable.xplay);
             title.setText("");
-            msg.setText("game started");
             start=true;
             bord=new int[3][3];
             turn=1;
@@ -74,11 +71,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if(start){
             playBtn.setText("play again");
             int tag = Integer.parseInt(view.getTag().toString());
-            Log.d("TAG", "button clicked = " + tag);
             int rIndex = tag / 3;
             int cIndex = tag % 3;
-            Log.d("TAG", "row = " + rIndex +" col = "+cIndex);
-
 
             if (bord[rIndex][cIndex] == 0) {
                 if (turn == 1) {
@@ -132,7 +126,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     start=false;
                 }
 
-                boolean isDraw=false;
 
 
                 turn*=-1;
