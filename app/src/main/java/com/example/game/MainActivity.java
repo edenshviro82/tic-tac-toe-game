@@ -1,11 +1,19 @@
 package com.example.game;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -18,6 +26,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     TextView title;
     boolean start=false;
     Button playBtn;
+    LinearLayout l1;
+    ImageView vertical0;
 
 
     @Override
@@ -28,8 +38,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         title = findViewById(R.id.mainActivityTitle);
         msg = findViewById(R.id.mainActivityMsg);
         playBtn = findViewById(R.id.mainActivityPlayBtn);
+        l1= findViewById(R.id.mainActivityLayout0);
         ims = new ImageButton[9];
-
+        vertical0=findViewById(R.id.mainActivityIV0);
 
 
 
@@ -42,15 +53,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
         playBtn.setOnClickListener(view -> {
-            title.setText("X turn");
-
+            title.setBackgroundResource(R.drawable.xplay);
+            title.setText("");
             msg.setText("game started");
             start=true;
             bord=new int[3][3];
             turn=1;
             win=false;
             for (int i = 0; i < ims.length; i++) {
-                ims[i].setImageResource(R.drawable.white);
+                ims[i].setImageResource(R.drawable.backone);
+                vertical0.setBackgroundResource(R.drawable.empty);
             }
 
         });
@@ -70,13 +82,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             if (bord[rIndex][cIndex] == 0) {
                 if (turn == 1) {
-                    title.setText("O turn");
-                    ims[tag].setImageResource(R.drawable.x);
+                    title.setBackgroundResource(R.drawable.oplay);
+                    ims[tag].setImageResource(R.drawable.x1);
                     bord[rIndex][cIndex] = 1;
 
                 }else {
-                    title.setText("X turn");
-                    ims[tag].setImageResource(R.drawable.ic_launcher_foreground);
+                    title.setBackgroundResource(R.drawable.xplay);
+                    ims[tag].setImageResource(R.drawable.o1);
                     bord[rIndex][cIndex] = -1;
                 }
 
@@ -89,13 +101,39 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
                 if(win) {
-                    if (turn == 1)
-                        title.setText("X wins");
-                    else
-                        title.setText("O wins");
+                    if((bord[0][0] == turn && bord[1][0] == turn && bord[2][0] == turn))
+                        vertical0.setBackgroundResource(R.drawable.mark3);
+                    if((bord[0][1] == turn && bord[1][1] == turn && bord[2][1] == turn))
+                        vertical0.setBackgroundResource(R.drawable.mark4);
+                    if((bord[0][2] == turn && bord[1][2] == turn && bord[2][2] == turn))
+                        vertical0.setBackgroundResource(R.drawable.mark5);
+                    if((bord[0][0] == turn && bord[1][1] == turn && bord[2][2] == turn))
+                        vertical0.setBackgroundResource(R.drawable.mark1);
+                    if((bord[0][2] == turn && bord[1][1] == turn && bord[2][0] == turn))
+                        vertical0.setBackgroundResource(R.drawable.mark2);
+                    if((bord[0][0] == turn && bord[0][1] == turn && bord[0][2] == turn))
+                        vertical0.setBackgroundResource(R.drawable.mark6);
+                    if((bord[1][0] == turn && bord[1][1] == turn && bord[1][2] == turn))
+                        vertical0.setBackgroundResource(R.drawable.mark7);
+                    if((bord[2][0] == turn && bord[2][1] == turn && bord[2][2] == turn))
+                        vertical0.setBackgroundResource(R.drawable.mark8);
 
+
+
+                    if (turn == 1) {
+                        title.setBackgroundResource(R.drawable.xwin);
+
+
+                    }else {
+                        title.setBackgroundResource(R.drawable.owin);
+
+
+                    }
                     start=false;
                 }
+
+                boolean isDraw=false;
+
 
                 turn*=-1;
 
