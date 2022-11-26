@@ -65,6 +65,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         });
     }
+    public boolean isWin(int rIndex, int cIndex,int turn)
+    {
+        return ((bord[rIndex][0] == turn && bord[rIndex][1] == turn && bord[rIndex][2] == turn) ||
+                (bord[0][cIndex] == turn && bord[1][cIndex] == turn && bord[2][cIndex] == turn) ||
+                (bord[0][0] == turn && bord[1][1] == turn && bord[2][2] == turn)||
+                (bord[0][2] == turn && bord[1][1] == turn && bord[2][0] == turn));
+    }
 
     //X/O buttons
     @Override
@@ -88,12 +95,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
 
 
-                if ((bord[rIndex][0] == turn && bord[rIndex][1] == turn && bord[rIndex][2] == turn) ||
-                        (bord[0][cIndex] == turn && bord[1][cIndex] == turn && bord[2][cIndex] == turn) ||
-                        (bord[0][0] == turn && bord[1][1] == turn && bord[2][2] == turn)||
-                        (bord[0][2] == turn && bord[1][1] == turn && bord[2][0] == turn))
-                    win = true;
-
+                win = isWin(rIndex,cIndex,turn);
 
                 if(win) {
                     if((bord[0][0] == turn && bord[1][0] == turn && bord[2][0] == turn))
