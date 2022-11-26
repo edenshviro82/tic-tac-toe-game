@@ -73,6 +73,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 (bord[0][2] == turn && bord[1][1] == turn && bord[2][0] == turn));
     }
 
+    public boolean isDraw()
+    {
+        for (int row=0; row<3; row++)
+        {
+            for (int col=0; col<3; col++)
+            {
+                if(bord[row][col] == 0 )
+                    return false;
+            }
+        }
+        return true;
+    }
+
     //X/O buttons
     @Override
     public void onClick(View view) {
@@ -94,6 +107,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     bord[rIndex][cIndex] = -1;
                 }
 
+                if(isDraw()){
+                    title.setBackgroundResource(R.drawable.nowin);
+                }
 
                 win = isWin(rIndex,cIndex,turn);
 
