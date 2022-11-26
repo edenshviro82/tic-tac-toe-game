@@ -41,8 +41,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         vertical0=findViewById(R.id.mainActivityIV0);
 
 
-
-
         for (int i = 0; i < ims.length; i++) {
             String id = "mainActivityBtn" + i;
             int resID = getResources().getIdentifier(id, "id", getPackageName());
@@ -131,26 +129,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     if((bord[2][0] == turn && bord[2][1] == turn && bord[2][2] == turn))
                         vertical0.setBackgroundResource(R.drawable.mark8);
 
-
-
                     if (turn == 1) {
                         title.setBackgroundResource(R.drawable.xwin);
 
 
                     }else {
                         title.setBackgroundResource(R.drawable.owin);
-
-
                     }
                     start=false;
                 }
 
-
-
                 turn*=-1;
 
             }
-
 
 
         }
